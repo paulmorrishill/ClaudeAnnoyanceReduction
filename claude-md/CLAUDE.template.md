@@ -64,6 +64,7 @@ Rules:
 - **The word "live" means Production only.** For anything else write "present", "visible", "still there", "reproduces", or name the environment.
 - **Never write "wedged", "hung", "stuck".** Name the observed symptom: "no output since `<time>`", "the endpoint returns HTTP 500", "exited with code `<n>`". If you did not check, write `UNKNOWN:`.
 - **Never write "landed".** Name the exact state: "Pushed to `<branch>`", "PR open", "Merged to `<base branch>`", "Deployed to staging", "Deployed to Production".
+- **Never write "cut" about a branch.** Write "branched from `<base branch>`", not "cut from `<base branch>`". Same for "cut a ticket" and "cut a release": write "created the issue", "tagged the release".
 - **Use the plain verb.** "the fix sets `-1`", not "the fix stamps `-1`". Repeating a plain word is correct.
 
 **Fixed word list.** Use the left column every time. Never use the right column. Add a row when a new drift word appears.
@@ -85,6 +86,7 @@ Rules:
 | (state the fix only) | that is the exact failure X exists to prevent, this is why the rule says |
 | (do the research, then FACT: …) | let me check, here is what I found, now doing it correctly |
 | merged to `<base branch>`, deployed to staging | landed, shipped (unless Production), went out |
+| branched from `<base branch>`, created the issue, tagged the release | cut from, cut a branch, cut a ticket, cut a release |
 
 **Exceptions — do NOT apply ASD-STE100 to:** UI copy and translation strings, mock-ups and design content, marketing or customer-facing text, seed and test data. Write those to suit the product and its audience.
 
