@@ -14,27 +14,52 @@ Do this **before** you read code for a task, plan, edit a file, run a build, or 
 
 1. Fetch the base branch this repo ships from: `git fetch origin <base branch>`.
 2. Measure: `git rev-parse --abbrev-ref HEAD`, `git rev-list --left-right --count origin/<base branch>...HEAD`, `git status --porcelain`.
-3. **Ask the working-tree question and wait.** It is the first question of the task — before any plan, any file read for the task, and any code. Fixed shape, fixed order, so the user answers with one digit:
+3. **Classify the request**, then follow that branch. Read-only and write requests get different treatment.
+
+**Read-only** — the deliverable is an answer and nothing changes: explain, describe, summarise, review, audit, find, trace, compare, diagnose, "why does…", "where is…".
+
+**Write** — the deliverable is a change: fix, add, implement, refactor, rename, remove, migrate, generate, deploy, "make it…".
+
+**Ambiguity means write.** "Look at the login bug" is read-only; "look at the login bug and sort it" is write. A read-only task that turns into a write asks the question at that moment, before the first edit.
+
+### Read-only: do not ask. State one line and start.
+
+There is nothing to decide — the working copy is what the user is asking about.
 
 ```
-What working tree? Current branch is <branch> and is <N> commits behind <base branch>.
-
-1. New branch from latest <base branch> here
-2. Pull latest <base branch> and work here
-3. Work directly on the existing working files, no branching, no new work tree
-4. Create a work tree and pull latest <base branch>
-5. Other
+Read-only request, so using the local working copy as it stands.
+FACT: on <branch>, 0 behind / 2 ahead of origin/<base branch>.
 ```
 
-| Option | Commands |
-|---|---|
-| 1 | `git fetch origin <base branch> && git checkout -b <work branch> origin/<base branch>` |
-| 2 | `git pull --ff-only` on the current branch |
-| 3 | Change nothing about the branch. State the behind-count once and carry on. |
-| 4 | `git worktree add <path> -b <work branch> origin/<base branch>`, then work in that path |
-| 5 | The user names the branch, ref or arrangement. Do what they say. |
+Add a **WARNING** line only where it changes what the answer is worth:
 
-Ask it once per task, not every turn. Wait for the answer — do not pick a default and continue. Never merge, rebase, force-push, reset, stash or discard the user's work to "get current" without the user's explicit word.
+```
+WARNING: this branch is 5 commits behind origin/<base branch> — findings may already be fixed upstream.
+WARNING: 3 uncommitted files in the tree, so this is not what is on any branch.
+```
+
+Nothing extra when the branch is current and the tree is clean. Do not offer to update the branch.
+
+### Write: ask with the interface's question control, not with text
+
+Use `AskUserQuestion` (or the harness's equivalent structured-choice control). **Do not print the numbered list as prose when a question control exists** — a text list scrolls away, is easy to answer ambiguously, and does not show the user that the session is blocked on them. Print options as text only where the harness has no such control.
+
+- **Header:** `Working tree`
+- **Question:** `What working tree? <branch> is <N> commits behind <base branch>.`
+
+| # | Option | Commands |
+|---|---|---|
+| 1 | New branch from latest `<base branch>` | `git fetch origin <base branch> && git checkout -b <work branch> origin/<base branch>` |
+| 2 | Pull latest `<base branch>` and work here | `git pull --ff-only` on the current branch |
+| 3 | Work on the existing files as they are | Change nothing about the branch. State the behind-count once and carry on. |
+| 4 | New work tree from latest `<base branch>` | `git worktree add <path> -b <work branch> origin/<base branch>`, then work in that path |
+| 5 | Other | The user names the branch, ref or arrangement. Do what they say. |
+
+Ask it once per task, not every turn, in fixed order. Wait for the answer — do not pick a default and continue. Uncommitted changes are a second question in the same message: name the files.
+
+**An option that fails is not an answer.** `git pull --ff-only` refuses on a diverged branch; `git checkout -b` fails on an existing name. Print the exact error, print `git log --oneline origin/<base branch>..HEAD`, and ask again. Never choose a merge, rebase or reset yourself to make the option work.
+
+Never merge, rebase, force-push, reset, stash or discard the user's work to "get current" without the user's explicit word.
 
 Report the state in the first message of the task: `FACT: on <branch>, 0 behind / 3 ahead of origin/<base branch>.`
 

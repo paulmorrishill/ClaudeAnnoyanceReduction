@@ -14,7 +14,7 @@ Two kinds of thing live here:
 | File | What it removes |
 |---|---|
 | [CLAUDE.template.md](claude-md/CLAUDE.template.md) | Everything below, combined into one ready-to-edit `CLAUDE.md`. Start here. |
-| [start-of-work-branch-rule.md](claude-md/start-of-work-branch-rule.md) | Work done on a stale or wrong branch. The agent asks one fixed five-option working-tree question before any code. |
+| [start-of-work-branch-rule.md](claude-md/start-of-work-branch-rule.md) | Work done on a stale or wrong branch. A read-only request states which tree it is reading and warns if that tree is stale, without asking anything. A write request asks one fixed five-option working-tree question through the interface's question control, before any code. |
 | [writing-style.md](claude-md/writing-style.md) | Vague words, self-narration, apology, flattery, "landed", "wedged", editorialising. Simplified Technical English plus a fixed banned-word list. |
 | [working-discipline.md](claude-md/working-discipline.md) | Invented time estimates, mid-task stops, schema hacks around migration errors, "✅ passing" over a red build. |
 | [background-task-monitoring.md](claude-md/background-task-monitoring.md) | Waiting forever on a background job whose completion notification never arrived. |
