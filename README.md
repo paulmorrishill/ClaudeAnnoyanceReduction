@@ -37,7 +37,9 @@ Copy a skill directory into `.claude/skills/` in your repo. Each has a `SKILL.md
 | [e2e-coverage-validation](skills/e2e-coverage-validation/) | *Is this feature actually covered?* Enumerates every branch, error value, permission path and UI state (mutation-test style), enumerates every real test, joins them, and ranks the gaps. A second agent derives the expected scenarios with the code withheld, to catch paths the code forgot. Read-only audit. |
 | [design-insufficiency](skills/design-insufficiency/) | *Can a real person use this?* Three tracks — a static usability-smell scan keyed to Nielsen's heuristics, a handicapped-persona cognitive walkthrough, and an archetype capability-completeness diff — then Skeptic → Referee, cross-linked. Reports as a severity-banded list you reply to by ID. |
 
-All three share the same design: **fan out narrowly, then try to disprove.** One agent hunting everything latches onto the first problem class it sees and shares the blind spots of whatever model wrote the code. One agent per class, then an adversarial pass, then an independent verdict, removes both.
+| [prompt-for-sensitive](skills/prompt-for-sensitive/) | *How does the agent get a secret without seeing it?* A native window takes the value from the human. Plain mode writes it to a file the agent names. `--encrypt` writes an AES-GCM vault and prints only a token; scripts then use the value through `pfs.py exec` (env var or stdin, output masked). The key is split between the token and a DPAPI-protected machine half, the vault expires, and an hourly sweep shreds expired vaults. Python + tkinter + `cryptography`. |
+
+The first three share the same design: **fan out narrowly, then try to disprove.** One agent hunting everything latches onto the first problem class it sees and shares the blind spots of whatever model wrote the code. One agent per class, then an adversarial pass, then an independent verdict, removes both.
 
 ### Making them yours
 
