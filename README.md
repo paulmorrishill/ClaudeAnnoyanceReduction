@@ -2,10 +2,11 @@
 
 Shared, project-neutral Claude Code instructions and skills. Everything here is generic: no repository, product or stack names, no internal paths. Copy a file into your own repo and fill in the `<fill in>` markers.
 
-Two kinds of thing live here:
+Three kinds of thing live here:
 
 - **`claude-md/`** — text to paste into your repo's `CLAUDE.md`. It changes how the agent *writes and behaves*.
 - **`skills/`** — full skills to copy into `.claude/skills/`. They change what the agent *can do*.
+- **`plugins/`** — Claude Code plugins you install with one command. They change the Claude app itself.
 
 ---
 
@@ -44,6 +45,20 @@ The first three share the same design: **fan out narrowly, then try to disprove.
 ### Making them yours
 
 The skills are stack-neutral, so they are honest but blunt out of the box. Each has a short setup section naming what to fill in — the design system, the API contract shape, where the tests live, the framework's template syntax, your real hotspots. Ten minutes of that is the difference between generic advice and findings anchored to `file:line`.
+
+---
+
+## plugins/
+
+Install from this repository's marketplace:
+
+```
+/plugin install <plugin> --marketplace paulmorrishill/ClaudeAnnoyanceReduction
+```
+
+| Plugin | What it removes |
+|---|---|
+| [conversation-tags](plugins/conversation-tags/) | Losing track of which conversation waits on you. `/tag waiting` (or any emoji) puts a 🟡 badge on the conversation title in the desktop sidebar; `/tags` lists every tagged conversation. Claude can set and clear the tag itself through `set_tag` / `clear_tag`, for example when it leaves a draft for you to approve. |
 
 ---
 

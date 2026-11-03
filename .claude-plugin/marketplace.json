@@ -1,0 +1,5 @@
+{
+  "name": "claude-annoyance-reduction",
+  "owner": { "name": "Paul Morris Hill" },
+  "plugins": [{ "name": "conversation-tags", "source": "./plugins/conversation-tags" }]
+}

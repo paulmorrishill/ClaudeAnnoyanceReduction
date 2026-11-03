@@ -1,0 +1,8 @@
+{
+  "name": "conversation-tags",
+  "version": "0.1.0",
+  "description": "Tag conversations with a label and note; shows the label as a title badge in the desktop sidebar and lists every tagged conversation.",
+  "author": { "name": "Paul Morris Hill" },
+  "license": "MIT",
+  "types": "./types/index.d.ts"
+}
