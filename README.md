@@ -19,6 +19,7 @@ Three kinds of thing live here:
 | [writing-style.md](claude-md/writing-style.md) | Vague words, self-narration, apology, flattery, "landed", "wedged", editorialising. Simplified Technical English plus a fixed banned-word list. |
 | [working-discipline.md](claude-md/working-discipline.md) | Invented time estimates, mid-task stops, schema hacks around migration errors, "✅ passing" over a red build. |
 | [background-task-monitoring.md](claude-md/background-task-monitoring.md) | Waiting forever on a background job whose completion notification never arrived. |
+| [conversation-tags.md](claude-md/conversation-tags.md) | Not knowing which conversation waits on you, or how a task ended. The agent sets a 🟡 waiting, 🟢 done or 🔴 failed badge on the conversation title. Needs the `conversation-tags` plugin. |
 
 ### Install
 
